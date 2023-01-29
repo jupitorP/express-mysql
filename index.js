@@ -5,7 +5,9 @@ const PORT = 4000;
 const mysql = require("mysql2");
 const cors = require("cors");
 app.use(cors());
-
+app.listen(PORT, () => {
+  console.log("API Running");
+});
 const connection = mysql.createConnection(process.env.DATABASE_URL);
 
 app.get("/", (req, res) => {
@@ -21,7 +23,5 @@ app.get("/att", (req, res) => {
   );
 });
 
-app.listen(process.env.PORT || 4000);
-
-module.exports = app;
+//module.exports = app;
 //node index.js
