@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const app = express();
 const PORT = 4000;
@@ -8,7 +7,9 @@ app.use(cors());
 app.listen(PORT, () => {
   console.log("API Running");
 });
-const connection = mysql.createConnection(process.env.DATABASE_URL);
+const connection = mysql.createConnection(
+  'mysql://cuns31s19ygzffvwqcbm:pscale_pw_h1eWHC35DP1N2cLGrvvIEnRpPgdpdGRHpG95VD4riCS@ap-southeast.connect.psdb.cloud/linlindb?ssl={"rejectUnauthorized":true}'
+);
 
 app.get("/", (req, res) => {
   res.send("This is my API running");
