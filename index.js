@@ -3,6 +3,7 @@ const app = express();
 const PORT = 4000;
 const mysql = require("mysql2");
 const cors = require("cors");
+const sql_attractions = "SELECT * FROM attractions";
 app.use(cors());
 app.listen(PORT, () => {
   console.log("API Running");
@@ -16,8 +17,16 @@ app.get("/", (req, res) => {
 });
 
 app.get("/att", (req, res) => {
+  //const id = req.body.id;
+
+  connection.query(sql_attractions, function (err, resules, fields) {
+    res.send(resules);
+  });
+});
+app.get("/att/:id", (req, res) => {
+  const id = req.params.id;
   connection.query(
-    "SELECT * FROM attractions",
+    sql_attractions + " WHERE id=" + id,
     function (err, resules, fields) {
       res.send(resules);
     }
